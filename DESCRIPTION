@@ -1,4 +1,4 @@
-Package: tstk
+Package: aatk
 Type: Package
 Title: tool kit in takewiki solutions
 Version: 0.1.1
@@ -10,3 +10,21 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
+Collate: 
+    'AddinRegFileCreator.R'
+    'addin_inst_extdata.R'
+    'clockAddin.R'
+    'hello.R'
+    'imp_pptx.R'
+    'insertDataFolder.R'
+    'insertGithubPackage.R'
+    'insertHyperLink.R'
+    'insertImageTexts.R'
+    'insertInversePage.R'
+    'insertLibraryEx.R'
+    'insertPic.R'
+    'install_bioConductor.R'
+    'libraryEx.R'
+    'regAddin.R'
+    'regAddinUI.R'
+    'updateSciptFiles.R'

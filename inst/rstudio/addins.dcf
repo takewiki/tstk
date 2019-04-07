@@ -1,0 +1,61 @@
+Name: 创建插件注册文件
+Description: 创建插件注册文件，内容为空.
+Binding: AddinRegFileCreator
+Interactive: true
+
+Name: 插入图文
+Description: 插入一个图片及6个文本说明，用于PPT.
+Binding: insertImageTexts
+Interactive: false
+
+Name: 更新脚本文档
+Description: 当function改变时,需要同时更新相应的文档
+Binding: updateScriptFiles
+Interactive: true
+
+Name: 插入'data-raw'文件夹
+Description: 在创建R包时用于创建data-raw文件夹.
+Binding: insertDataRawFolder
+Interactive: true
+
+Name: 获取当前时间
+Description: 创建交互式时钟，获取当前时间到脚本指定区域.
+Binding: clockAddin
+Interactive: false
+
+Name: 插入图片
+Description: 插入单个图片，来源于本地或URL
+Binding: insertPic
+Interactive: false
+
+Name: 插入超连接
+Description: 插入URL超连接,可添加文字说明
+Binding: insertHyperLink
+Interactive: false
+
+Name: 插入CRAN中R包
+Description: 插入加载R包
+Binding: insertLibraryEx
+Interactive: false
+
+Name: 插入Github中R包
+Description: 插入加载R包
+Binding: insertGithubPackage
+Interactive: false
+
+Name: 插入黑底白字页
+Description: 插入黑底白字页,居中
+Binding: insertInversePage
+Interactive: false
+
+Name: 注册Rstudio插件
+Description: 注册Rstudio插件，写入inst-rstudio-addins.dcf文件.
+Binding: regAddin
+Interactive: false
+
+Name: 注册Rstudio UI插件
+Description: 注册Rstudio UI插件，写入inst-rstudio-addins.dcf文件.
+Binding: regAddinUI
+Interactive: false
+
+
