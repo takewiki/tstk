@@ -28,3 +28,5 @@ Collate:
     'regAddin.R'
     'regAddinUI.R'
     'updateSciptFiles.R'
+Suggests: 
+    testthat
