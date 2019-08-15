@@ -9,8 +9,9 @@ Description: toolkit inspired by devtools using in takewikisolution
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Collate: 
+    '0_readme.R'
     'AddinRegFileCreator.R'
     'addin_inst_extdata.R'
     'clockAddin.R'
