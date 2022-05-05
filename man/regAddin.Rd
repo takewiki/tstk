@@ -4,9 +4,12 @@
 \alias{regAddin}
 \title{注册Rstudio插件文件}
 \usage{
-regAddin(addinName = "注册Rstudio插件",
+regAddin(
+  addinName = "注册Rstudio插件",
   addinDescription = "注册Rstudio插件，写入inst-rstudio-addins.dcf文件.",
-  addBinding = "regAddin", addinInteractive = "false")
+  addBinding = "regAddin",
+  addinInteractive = "false"
+)
 }
 \arguments{
 \item{addinName}{插件名称}

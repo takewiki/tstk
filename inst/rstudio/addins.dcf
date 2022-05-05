@@ -18,6 +18,11 @@ Description: 在创建R包时用于创建data-raw文件夹.
 Binding: insertDataRawFolder
 Interactive: true
 
+Name: 插入'test'文件夹
+Description: 在创建R包时用于创建test文件夹.
+Binding: insertTestFolder
+Interactive: true
+
 Name: 获取当前时间
 Description: 创建交互式时钟，获取当前时间到脚本指定区域.
 Binding: clockAddin
