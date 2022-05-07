@@ -3,6 +3,7 @@
 export(AddinRegFileCreator)
 export(addin_inst_extdata)
 export(clockAddin)
+export(debug_print)
 export(imp_pptx)
 export(insertDataRawFolder)
 export(insertGithubPackage)
