@@ -30,7 +30,9 @@ if(ncount >0){
 #' @examples
 #'import() 
 import <- function(app_id) {
+  #加载所有系统包
   importPkgs()
+  #加载程序相关包
   importPkgs(FappId = app_id)
   
   
