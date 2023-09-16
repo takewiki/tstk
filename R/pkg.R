@@ -95,13 +95,14 @@ pkgVersion_get <- function() {
 #' 代码推荐至github
 #'
 #' @param github_userName github用户名
+#' @param branch 分支
 #'
 #' @return 返回值
 #' @export
 #'
 #' @examples
 #' pkg_push2Github()
-pkg_push2Github <- function(github_userName='takewiki') {
+pkg_push2Github <- function(github_userName='takewiki',branch='main') {
   #添加代码文件
   system(paste0("git add ."))
   #提交代码
@@ -111,7 +112,7 @@ pkg_push2Github <- function(github_userName='takewiki') {
   pkg_name = pkgName_get()
   system(paste0("git remote add origin git@github.com:",github_userName,"/",pkg_name,".git"))
   #创建分支
-  system(paste0("git branch -M main"))
-  system(paste0("git push -u origin main"))
+  system(paste0("git branch -M ",branch,""))
+  system(paste0("git push -u origin ",branch,""))
   
 }
