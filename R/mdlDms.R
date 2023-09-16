@@ -1,63 +1,20 @@
-#' 创建DMS模块 
-#'
-#' @param mdl_dir   模块目录
-#' @param mdl_name 模块名称
-#' @param demo_dir 模板目录
-#' @param demo_name 模板名称
-#' @param type  模板类型
-#'
-#' @return 返回值
-#' @export
-#'
-#' @examples
-#' mdl_create()
-mdl_create <- function(mdl_name = 'mdlStarNight',mdl_dir = '/home/hulilei/mdls/',
-                       demo_dir = '/home/hulilei/mdls/mdlDemo/',demo_name = 'mdlDemo',type=c('Com','Pkg','r','Server','UI')) {
-  mdl_fullName = paste0(mdl_dir,mdl_name)
-  com_dir_demo = paste0(demo_dir,demo_name,type)
-  com_dir_prj = paste0(mdl_fullName,'/',mdl_name,type)
-  com_dir_temp = paste0(mdl_fullName,'/',demo_name,type)
-  # 创建项目目录
-  if(!dir.exists(mdl_fullName)){
-    dir.create(mdl_fullName)
-  }
-  #如果存在复制过来demo模板数据需要删除,则需要删除
-  lapply(com_dir_temp, function(dir_path){
-    if(dir.exists(dir_path)){
-      #删除目录
-      unlink(dir_path,recursive = T)
-    }
-  })
-  
-  #复制模
-  file.copy(from=com_dir_demo,to=mdl_fullName,overwrite = T,recursive = T)
-  #如果目标项目文件已经存在，则需要进行删除
-  lapply(com_dir_prj, function(dir_path){
-    if(dir.exists(dir_path)){
-      #删除目录
-      unlink(dir_path,recursive = T)
-    }
-  })
-  #重命名
-  file.rename(com_dir_temp,com_dir_prj)
-  res <- TRUE
-  return(res)
-}
+
 
 #' 修改com
 #'
-#' @param com_dir  目标
 #' @param mdl_name 名称
+#' @param mdl_dir  修改路径名
 #'
 #' @return 返回值
 #' @export
 #'
 #' @examples
 #' mdl_tidy
-mdlCom_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight') {
+mdlCom_tidy <- function(mdl_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight') {
   type='Com'
+  
   #项目路径
-  full_path = paste0(com_dir,mdl_name,'/',mdl_name,type)
+  full_path = paste0(mdl_dir,mdl_name,'/',mdl_name,type)
   #修改项目文件
   rproj_old ='mdlDemoCom.Rproj'
   rproj_new = paste0(mdl_name,type,'.Rproj')
@@ -105,20 +62,21 @@ mdlCom_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight')
 
 #' 修改com
 #'
-#' @param com_dir  目标
 #' @param mdl_name 名称
 #' @param version 版本
 #' @param author 作者
+#' @param mdl_dir 模块目录
 #'
 #' @return 返回值
 #' @export
 #'
 #' @examples
 #' mdl_tidy
-mdlServer_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',version='1.0.0',author='hulilei') {
+mdlServer_tidy <- function(mdl_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',version='1.0.0',author='hulilei') {
   type='Server'
+  
   #项目路径
-  full_path = paste0(com_dir,mdl_name,'/',mdl_name,type)
+  full_path = paste0(mdl_dir,mdl_name,'/',mdl_name,type)
   #修改项目文件
   rproj_old ='mdlDemoServer.Rproj'
   rproj_new = paste0(mdl_name,type,'.Rproj')
@@ -138,6 +96,26 @@ mdlServer_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNigh
   data_desc[5] = paste0("Author: ",author,"")
   data_desc[6] = paste0("Maintainer: hulilei <hulilei@takewiki.com.cn>")
   writeLines(data_desc,desc_filePath)
+  #更新文件
+  #删除演示数据
+  file_help = paste0(full_path,"/R/hello.R")
+  if(file.exists(file_help)){
+    file.remove(file_help)
+  }
+  #同步删除hello生成的帮助手册md
+  file_rd = paste0(full_path,"/man/hello.Rd")
+  if(file.exists(file_rd)){
+    file.remove(file_rd)
+  }
+  #删除namespace重新生成
+  file_namespace =  desc_filePath = paste0(full_path,'/','NAMESPACE')
+  if(file.exists(file_namespace)){
+    file.remove(file_namespace)
+  }
+  #更新文件
+  devtools::document(pkg = full_path)
+  #重新安装包
+  devtools::install(pkg = full_path)
   res <- TRUE
   return(res)
   
@@ -145,7 +123,7 @@ mdlServer_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNigh
 
 #' 修改UI
 #'
-#' @param com_dir  目标
+#' @param mdl_dir  目标
 #' @param mdl_name 名称
 #' @param version 版本
 #' @param author 作者
@@ -155,10 +133,11 @@ mdlServer_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNigh
 #'
 #' @examples
 #' mdlUI_tidy
-mdlUI_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',version='1.0.0',author='hulilei') {
+mdlUI_tidy <- function(mdl_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',version='1.0.0',author='hulilei') {
   type='UI'
+  mdl_dir = 
   #项目路径
-  full_path = paste0(com_dir,mdl_name,'/',mdl_name,type)
+  full_path = paste0(mdl_dir,mdl_name,'/',mdl_name,type)
   #修改项目文件
   rproj_old ='mdlDemoUI.Rproj'
   rproj_new = paste0(mdl_name,type,'.Rproj')
@@ -178,6 +157,25 @@ mdlUI_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',v
   data_desc[5] = paste0("Author: ",author,"")
   data_desc[6] = paste0("Maintainer: hulilei <hulilei@takewiki.com.cn>")
   writeLines(data_desc,desc_filePath)
+  #删除演示数据
+  file_help = paste0(full_path,"/R/hello.R")
+  if(file.exists(file_help)){
+    file.remove(file_help)
+  }
+  #同步删除hello生成的帮助手册md
+  file_rd = paste0(full_path,"/man/hello.Rd")
+  if(file.exists(file_rd)){
+    file.remove(file_rd)
+  }
+  #删除namespace重新生成
+  file_namespace =  desc_filePath = paste0(full_path,'/','NAMESPACE')
+  if(file.exists(file_namespace)){
+    file.remove(file_namespace)
+  }
+  #更新文件
+  devtools::document(pkg = full_path)
+  #重新安装包
+  devtools::install(pkg = full_path)
   res <- TRUE
   return(res)
   
@@ -185,7 +183,7 @@ mdlUI_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',v
 
 #' 修改r
 #'
-#' @param com_dir  目标
+#' @param mdl_dir  目标
 #' @param mdl_name 名称
 #' @param version 版本
 #' @param author 作者
@@ -195,10 +193,11 @@ mdlUI_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',v
 #'
 #' @examples
 #' mdlr_tidy
-mdlr_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',version='1.0.0',author='hulilei') {
+mdlr_tidy <- function(mdl_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',version='1.0.0',author='hulilei') {
   type='r'
+  
   #项目路径
-  full_path = paste0(com_dir,mdl_name,'/',mdl_name,type)
+  full_path = paste0(mdl_dir,mdl_name,'/',mdl_name,type)
   #修改项目文件
   rproj_old ='mdlDemor.Rproj'
   rproj_new = paste0(mdl_name,type,'.Rproj')
@@ -218,6 +217,25 @@ mdlr_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',ve
   data_desc[5] = paste0("Author: ",author,"")
   data_desc[6] = paste0("Maintainer: hulilei <hulilei@takewiki.com.cn>")
   writeLines(data_desc,desc_filePath)
+  #删除演示数据
+  file_help = paste0(full_path,"/R/hello.R")
+  if(file.exists(file_help)){
+    file.remove(file_help)
+  }
+  #同步删除hello生成的帮助手册md
+  file_rd = paste0(full_path,"/man/hello.Rd")
+  if(file.exists(file_rd)){
+    file.remove(file_rd)
+  }
+  #删除namespace重新生成
+  file_namespace =  desc_filePath = paste0(full_path,'/','NAMESPACE')
+  if(file.exists(file_namespace)){
+    file.remove(file_namespace)
+  }
+  #更新文件
+  devtools::document(pkg = full_path)
+  #重新安装包
+  devtools::install(pkg = full_path)
   res <- TRUE
   return(res)
   
@@ -225,7 +243,7 @@ mdlr_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',ve
 
 #' 修改r
 #'
-#' @param com_dir  目标
+#' @param mdl_dir  目标
 #' @param mdl_name 名称
 #' @param version 版本
 #' @param author 作者
@@ -235,10 +253,11 @@ mdlr_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',ve
 #'
 #' @examples
 #' mdlr_tidy
-mdlPkg_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',version='1.0.0',author='hulilei') {
+mdlPkg_tidy <- function(mdl_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',version='1.0.0',author='hulilei') {
   type='Pkg'
+  
   #项目路径
-  full_path = paste0(com_dir,mdl_name,'/',mdl_name,type)
+  full_path = paste0(mdl_dir,mdl_name,'/',mdl_name,type)
   #修改项目文件
   rproj_old ='mdlDemoPkg.Rproj'
   rproj_new = paste0(mdl_name,type,'.Rproj')
@@ -258,7 +277,89 @@ mdlPkg_tidy <- function(com_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight',
   data_desc[5] = paste0("Author: ",author,"")
   data_desc[6] = paste0("Maintainer: hulilei <hulilei@takewiki.com.cn>")
   writeLines(data_desc,desc_filePath)
+  #删除演示数据
+  file_help = paste0(full_path,"/R/hello.R")
+  if(file.exists(file_help)){
+    file.remove(file_help)
+  }
+  #同步删除hello生成的帮助手册md
+  file_rd = paste0(full_path,"/man/hello.Rd")
+  if(file.exists(file_rd)){
+    file.remove(file_rd)
+  }
+  #删除namespace重新生成
+  file_namespace =  desc_filePath = paste0(full_path,'/','NAMESPACE')
+  if(file.exists(file_namespace)){
+    file.remove(file_namespace)
+  }
+  #更新文件
+  devtools::document(pkg = full_path)
+  #重新安装包
+  devtools::install(pkg = full_path)
+  #针对git进行修改
+  # system2(paste0("git add ",full_path,""))
+  # system2(paste0("git commit -m 'v",version,"'"))
+  # git_cmd = paste0("git remote add origin git@github.com:takewiki/",mdl_name,type,".git")
+  # system2(git_cmd)
+  # system2("git branch -M main")
+  # system2("git push -u origin main")
+  
+  
   res <- TRUE
   return(res)
   
+}
+
+
+#' 创建DMS模块 
+#'
+#' @param mdl_dir   模块目录
+#' @param mdl_name 模块名称
+#' @param demo_dir 模板目录
+#' @param demo_name 模板名称
+#' @param type  模板类型
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' mdl_create()
+mdl_create <- function(mdl_name = 'mdlStarNight',mdl_dir = '/home/hulilei/mdls/',
+                       demo_dir = '/home/hulilei/mdls/mdlDemo/',demo_name = 'mdlDemo',type=c('Com','Pkg','r','Server','UI')) {
+  mdl_fullName = paste0(mdl_dir,mdl_name)
+  mdl_dir_demo = paste0(demo_dir,demo_name,type)
+  mdl_dir_prj = paste0(mdl_fullName,'/',mdl_name,type)
+  mdl_dir_temp = paste0(mdl_fullName,'/',demo_name,type)
+  # 创建项目目录
+  if(!dir.exists(mdl_fullName)){
+    dir.create(mdl_fullName)
+  }
+  #如果存在复制过来demo模板数据需要删除,则需要删除
+  lapply(mdl_dir_temp, function(dir_path){
+    if(dir.exists(dir_path)){
+      #删除目录
+      unlink(dir_path,recursive = T)
+    }
+  })
+  
+  #复制模
+  file.copy(from=mdl_dir_demo,to=mdl_fullName,overwrite = T,recursive = T)
+  #如果目标项目文件已经存在，则需要进行删除
+  lapply(mdl_dir_prj, function(dir_path){
+    if(dir.exists(dir_path)){
+      #删除目录
+      unlink(dir_path,recursive = T)
+    }
+  })
+  #重命名
+  file.rename(mdl_dir_temp,mdl_dir_prj)
+  #针对文件做进一步的处理
+  mdlCom_tidy(mdl_dir = mdl_dir,mdl_name = mdl_name)
+  mdlUI_tidy(mdl_dir = mdl_dir,mdl_name = mdl_name)
+  mdlServer_tidy(mdl_dir = mdl_dir,mdl_name = mdl_name)
+  mdlPkg_tidy(mdl_dir = mdl_dir,mdl_name = mdl_name)
+  mdlr_tidy(mdl_dir = mdl_dir,mdl_name = mdl_name)
+  
+  res <- TRUE
+  return(res)
 }
