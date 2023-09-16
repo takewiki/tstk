@@ -5,14 +5,14 @@
 \title{修改UI}
 \usage{
 mdlUI_tidy(
-  com_dir = "/home/hulilei/mdls/",
+  mdl_dir = "/home/hulilei/mdls/",
   mdl_name = "mdlStarNight",
   version = "1.0.0",
   author = "hulilei"
 )
 }
 \arguments{
-\item{com_dir}{目标}
+\item{mdl_dir}{目标}
 
 \item{mdl_name}{名称}
 

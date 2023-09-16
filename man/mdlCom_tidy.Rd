@@ -4,10 +4,10 @@
 \alias{mdlCom_tidy}
 \title{修改com}
 \usage{
-mdlCom_tidy(com_dir = "/home/hulilei/mdls/", mdl_name = "mdlStarNight")
+mdlCom_tidy(mdl_dir = "/home/hulilei/mdls/", mdl_name = "mdlStarNight")
 }
 \arguments{
-\item{com_dir}{目标}
+\item{mdl_dir}{修改路径名}
 
 \item{mdl_name}{名称}
 }

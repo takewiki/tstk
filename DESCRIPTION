@@ -1,7 +1,7 @@
 Package: tstk
 Type: Package
 Title: tool kit in takewiki solutions
-Version: 3.3.2
+Version: 3.3.4
 Author: hulilei
 Maintainer: hulilei <hulilei@takewiki.com.cn>
 Description: toolkit inspired by devtools using in takewikisolution
@@ -16,6 +16,7 @@ Collate:
     'addin_inst_extdata.R'
     'clockAddin.R'
     'debug.R'
+    'git.R'
     'imp_pptx.R'
     'insertDataFolder.R'
     'insertGithubPackage.R'
