@@ -12,3 +12,18 @@ debug_print <- function(point='bug1') {
   print(res)
   
 }
+
+
+#' 创建debug文件夹
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' debug_create()
+debug_create <- function() {
+  if(dir.exists('./debug')){
+    dir.create('./debug')
+  }
+  
+}
