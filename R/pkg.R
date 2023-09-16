@@ -116,3 +116,30 @@ pkg_push2Github <- function(github_userName='takewiki',branch='main') {
   system(paste0("git push -u origin ",branch,""))
   
 }
+
+
+
+#' 代码推荐至github的main分支
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' pkg_push2Github()
+pkg_push2Github_main <- function() {
+ pkg_push2Github(branch = 'main')
+  
+}
+
+
+#' 代码推荐至github的master分支
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' pkg_push2Github()
+pkg_push2Github_master <- function() {
+  pkg_push2Github(branch = 'master')
+  
+}

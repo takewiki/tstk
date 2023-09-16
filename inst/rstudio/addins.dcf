@@ -13,6 +13,16 @@ Description: 当function改变时,需要同时更新相应的文档
 Binding: updateScriptFiles
 Interactive: true
 
+Name: 推送代码至main分支
+Description: 推送代码至main分支
+Binding: pkg_push2Github_main
+Interactive: true
+
+Name: 推送代码至master分支
+Description: 推送代码至master分支
+Binding: pkg_push2Github_master
+Interactive: true
+
 Name: 插入'data-raw'文件夹
 Description: 在创建R包时用于创建data-raw文件夹.
 Binding: insertDataRawFolder
