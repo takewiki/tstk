@@ -22,7 +22,7 @@ debug_print <- function(point='bug1') {
 #' @examples
 #' debug_create()
 debug_create <- function() {
-  if(dir.exists('./debug')){
+  if(!dir.exists('./debug')){
     dir.create('./debug')
   }
   
