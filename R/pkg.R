@@ -96,13 +96,14 @@ pkgVersion_get <- function() {
 #'
 #' @param github_userName github用户名
 #' @param branch 分支
+#' @param init 初始化
 #'
 #' @return 返回值
 #' @export
 #'
 #' @examples
 #' pkg_push2Github()
-pkg_push2Github <- function(github_userName='takewiki',branch='main') {
+pkg_push2Github <- function(github_userName='takewiki',branch='main',init=TRUE) {
   #添加代码文件
   system(paste0("git add ."))
   #提交代码
@@ -110,7 +111,10 @@ pkg_push2Github <- function(github_userName='takewiki',branch='main') {
   system(paste0("git commit -m 'v",pkg_version,"'"))
   #推动至服务器
   pkg_name = pkgName_get()
-  system(paste0("git remote add origin git@github.com:",github_userName,"/",pkg_name,".git"))
+  if(init){
+    system(paste0("git remote add origin git@github.com:",github_userName,"/",pkg_name,".git"))
+  }
+  
   #创建分支
   system(paste0("git branch -M ",branch,""))
   system(paste0("git push -u origin ",branch,""))
@@ -126,10 +130,35 @@ pkg_push2Github <- function(github_userName='takewiki',branch='main') {
 #'
 #' @examples
 #' pkg_push2Github()
-pkg_push2Github_main <- function() {
- pkg_push2Github(branch = 'main')
+pkg_push2Github_main_init <- function() {
+ pkg_push2Github(branch = 'main',init = TRUE)
   
 }
+
+#' 代码推荐至github的main分支
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' pkg_push2Github()
+pkg_push2Github_main_update <- function() {
+  pkg_push2Github(branch = 'main',init = FALSE)
+  
+}
+
+#' 代码推荐至github的master分支
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' pkg_push2Github()
+pkg_push2Github_master_init <- function() {
+  pkg_push2Github(branch = 'master',init = TRUE)
+  
+}
+
 
 
 #' 代码推荐至github的master分支
@@ -139,7 +168,7 @@ pkg_push2Github_main <- function() {
 #'
 #' @examples
 #' pkg_push2Github()
-pkg_push2Github_master <- function() {
-  pkg_push2Github(branch = 'master')
+pkg_push2Github_master_update <- function() {
+  pkg_push2Github(branch = 'master',init = FALSE)
   
 }

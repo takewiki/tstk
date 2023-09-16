@@ -4,12 +4,14 @@
 \alias{pkg_push2Github}
 \title{代码推荐至github}
 \usage{
-pkg_push2Github(github_userName = "takewiki", branch = "main")
+pkg_push2Github(github_userName = "takewiki", branch = "main", init = TRUE)
 }
 \arguments{
 \item{github_userName}{github用户名}
 
 \item{branch}{分支}
+
+\item{init}{初始化}
 }
 \value{
 返回值
