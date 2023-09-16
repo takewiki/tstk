@@ -119,7 +119,7 @@ pkg_push2Github <- function(github_userName='takewiki',branch='main',init=TRUE) 
   system(paste0("git branch -M ",branch,""))
   system(paste0("git push -u origin ",branch,""))
   #发布新版本
-  github::release_create(owner = github_userName,repoName = pkg_name,tagName = paste0('v',pkg_version),github_token = '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')
+  github::release_create(owner = github_userName,repoName = pkg_name,tagName = paste0('v',pkg_version))
   
 }
 
