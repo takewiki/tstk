@@ -91,6 +91,33 @@ pkgVersion_get <- function() {
 }
 
 
+#' 设置包的版本号
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' pkgVersion_set()
+pkgVersion_set <- function() {
+  #判断文件是否存在
+  flag = file.exists("./DESCRIPTION")
+  if (flag){
+    version_origin = pkgVersion_get()
+    if(version_origin <='1.0.0'){
+      version_origin = '1.0.0'
+    }
+    data_desc = readLines("./DESCRIPTION")
+    data_desc[4] <- paste0("Version: ",version_origin,"")
+    writeLines(data_desc,"./DESCRIPTION")
+    res <- TRUE
+  }else{
+    res <- FALSE
+  }
+  return(res)
+  
+}
+
+
 
 #' 代码推荐至github
 #'
@@ -234,4 +261,25 @@ pkg_forkRelease <- function() {
   pkg_version = pkgVersion_get()
   pkg_name = pkgName_get()
   github::release_create(dms_token = dms_token,userName = 'ReshapeData',repoName = pkg_name,tagName = pkg_version)
+}
+
+#' R包结构优化
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' pkg_optimum()
+pkg_optimum <- function(){
+  #data_create
+  debug_create()
+  #设置测试2
+  debug2_create
+  #测试
+  insertTestFolder()
+  #data-raw
+  insertDataRawFolder()
+  #设置版本号
+  pkgVersion_set()
+  
 }

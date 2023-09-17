@@ -27,3 +27,17 @@ debug_create <- function() {
   }
   
 }
+
+#' 创建debug文件夹
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' debug2_create()
+debug2_create <- function() {
+  if(!dir.exists('./debug2')){
+    dir.create('./debug2')
+  }
+  
+}
