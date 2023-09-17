@@ -274,7 +274,7 @@ pkg_optimum <- function(){
   #data_create
   debug_create()
   #设置测试2
-  debug2_create
+  debug2_create()
   #测试
   insertTestFolder()
   #data-raw
