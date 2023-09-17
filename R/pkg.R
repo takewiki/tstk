@@ -182,3 +182,36 @@ pkg_push2Github_master_update <- function() {
   pkg_push2Github(branch = 'master',init = FALSE)
   
 }
+
+
+
+
+
+#' 更新ReshapeDataFork版本
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' pkg_fork2Github()
+pkg_fork2Github <- function() {
+  dms_token = dmsToken_get()
+  pkg_version = pkgVersion_get()
+  pkg_name = pkgName_get()
+  github::flow_fork(dms_token = dms_token,userName = 'takewiki' ,repoName = pkg_name,collaboratorName ='ReshapeData' ,tagName =pkg_version ,minute = 1)
+}
+
+
+#' Fork版本发布
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' pkg_forkRelease()
+pkg_forkRelease <- function() {
+  dms_token = dmsToken_get()
+  pkg_version = pkgVersion_get()
+  pkg_name = pkgName_get()
+  github::release_create(dms_token = dms_token,userName = 'ReshapeData',repoName = pkg_name,tagName = pkg_version)
+}

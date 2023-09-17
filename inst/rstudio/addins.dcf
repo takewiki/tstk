@@ -38,6 +38,16 @@ Description: 更新代码至master分支
 Binding: pkg_push2Github_master_update
 Interactive: true
 
+Name: Fork至ReshapeData
+Description: Fork至ReshapeData
+Binding: pkg_fork2Github
+Interactive: true
+
+Name: Fork版本发布
+Description: Fork版本发布
+Binding: pkg_forkRelease
+Interactive: true
+
 Name: 插入'data-raw'文件夹
 Description: 在创建R包时用于创建data-raw文件夹.
 Binding: insertDataRawFolder
