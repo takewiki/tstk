@@ -38,6 +38,11 @@ Description: 更新代码至master分支
 Binding: pkg_push2Github_master_update
 Interactive: true
 
+Name: 智能同步至GitHub
+Description: 智能同步至GitHub
+Binding: pkg_push2Github_auto
+Interactive: true
+
 Name: Fork至ReshapeData
 Description: Fork至ReshapeData
 Binding: pkg_fork2Github

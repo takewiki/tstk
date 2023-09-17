@@ -183,6 +183,26 @@ pkg_push2Github_master_update <- function() {
   
 }
 
+#' 智能同步至github
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' pkg_push2Github_auto()
+pkg_push2Github_auto <- function() {
+  
+  pkg_version = pkgVersion_get()
+  pkg_name = pkgName_get()
+  init = pkg_version <='1.0.0'
+  if(tsdo::left('tstk',2) =='ts'){
+    branch ='master'
+  }else{
+    branch = 'main'
+  }
+  pkg_push2Github(branch = branch,init = init)
+}
+
 
 
 

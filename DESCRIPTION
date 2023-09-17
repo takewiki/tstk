@@ -1,7 +1,7 @@
 Package: tstk
 Type: Package
 Title: tool kit in takewiki solutions
-Version: 3.4.8
+Version: 3.4.9
 Author: hulilei
 Maintainer: hulilei <hulilei@takewiki.com.cn>
 Description: toolkit inspired by devtools using in takewikisolution
