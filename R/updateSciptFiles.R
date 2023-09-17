@@ -46,4 +46,6 @@ updateAndInstall <- function(){
   devtools::document()
   #安装文件
   devtools::install()
+  #重启一下R Session
+  rstudioapi::restartSession()
 }
