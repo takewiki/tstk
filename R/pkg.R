@@ -222,7 +222,7 @@ pkg_push2Github_auto <- function() {
   pkg_version = pkgVersion_get()
   pkg_name = pkgName_get()
   init = pkg_version <='1.0.0'
-  if(tsdo::left('tstk',2) =='ts'){
+  if(tsdo::left(pkg_name,2) =='ts'){
     branch ='master'
   }else{
     branch = 'main'
