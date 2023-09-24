@@ -4,7 +4,10 @@
 \alias{pkgVersion_set}
 \title{设置包的版本号}
 \usage{
-pkgVersion_set()
+pkgVersion_set(type = "Package")
+}
+\arguments{
+\item{type}{Package or DMS}
 }
 \value{
 返回值

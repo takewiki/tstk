@@ -27,3 +27,8 @@ Name: R包结构优化
 Description: R包结构优化
 Binding: pkg_optimum
 Interactive: true
+
+Name: DMS模块结构优化
+Description: DMS模块结构优化
+Binding: dms_optimum
+Interactive: true

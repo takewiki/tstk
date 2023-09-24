@@ -93,12 +93,14 @@ pkgVersion_get <- function() {
 
 #' 设置包的版本号
 #'
+#' @param type Package or DMS
+#'
 #' @return 返回值
 #' @export
 #'
 #' @examples
 #' pkgVersion_set()
-pkgVersion_set <- function() {
+pkgVersion_set <- function(type='Package') {
   #判断文件是否存在
   flag = file.exists("./DESCRIPTION")
   if (flag){
@@ -111,6 +113,24 @@ pkgVersion_set <- function() {
     writeLines(data_desc,"./DESCRIPTION")
     res <- TRUE
   }else{
+    file.create('./DESCRIPTION')
+    data = character(15)
+    data[1] = "Package: test"   
+    data[2] = paste0("Type: ",type,"")      
+    data[3] = "Title: demo mudules for reshape data solutions."   
+    data[4] = "Version: 1.0.0"   
+    data[5] = "Author: hulilei"  
+    data[6] = "Maintainer: hulilei <hulilei@takewiki.com.cn>"                               
+    data[7] = "Description: user interface element for ui elements,latout and actions,"     
+    data[8] ="    mainly from shiny then from html5,css and js,also we want ui can produce"
+    data[9] = "    result in PDF,PPT,on-line system we can get both icon and templates."    
+    data[10] = "License: What license is it under?"                                          
+    data[11] = "Encoding: UTF-8"                                                             
+    data[12] = "LazyData: true"                                                              
+    data[13] = "Suggests: "                                                                  
+    data[14] = "    testthat"                                                                
+    data[15] = "RoxygenNote: 7.1.1" 
+    writeLines(data,'./DESCRIPTION')
     res <- FALSE
   }
   return(res)
@@ -280,6 +300,29 @@ pkg_optimum <- function(){
   #data-raw
   insertDataRawFolder()
   #设置版本号
-  pkgVersion_set()
+  pkgVersion_set(type = 'Package')
+  
+}
+
+
+#' DMS模块结构优化
+#'
+#' @return 返回值
+#' @export
+#' @include dir.R
+#'
+#' @examples
+#' pkg_optimum()
+dms_optimum <- function(){
+  #data_create
+  pkgPath_create('debug')
+  #设置测试2
+  pkgPath_create('debug2')
+  #测试
+  pkgPath_create('data-raw')
+  #设置共享路径
+  pkgPath_create('www')
+  #设置版本号
+  pkgVersion_set(type = 'DMS')
   
 }
