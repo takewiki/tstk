@@ -41,3 +41,42 @@ regAddinUI <-  function() {
 }
 
 
+
+#' 创建数据中台模块
+#'
+#' @return 返回值
+#' @include regAddin.R
+#' @import shiny
+#' @import miniUI
+#' @export
+#'
+#' @examples
+#' mdlCreateUI()
+mdlCreateUI <-  function() {
+  
+  # Our ui will be a simple gadget page, which
+  # simply displays the time in a 'UI' output.
+  ui <- miniPage(
+    gadgetTitleBar("创建DMS数据中台模块"),
+    miniContentPanel(
+      textInput("moduleName", "模块名称")
+      
+    ))
+  
+  server <- function(input, output, session) {
+    
+    
+    observeEvent(input$done, {
+      dml_create(input$moduleName);
+      stopApp()
+    })
+    
+  }
+  
+  # We'll use a pane viwer, and set the minimum height at
+  # 300px to ensure we get enough screen space to display the clock.
+  viewer <- paneViewer(300)
+  runGadget(ui, server, viewer = viewer)
+  
+}
+

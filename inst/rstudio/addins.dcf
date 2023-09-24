@@ -1,34 +1,39 @@
-Name: 更新脚本文档
+Name: DMS更新文档
 Description: 当function改变时,需要同时更新相应的文档
 Binding: updateScriptFiles
 Interactive: true
 
-Name: 更新脚本文档并安装R包
+Name: DMS更新&安装
 Description: 当function改变时,需要同时更新相应的文档
 Binding: updateAndInstall
 Interactive: true
 
-Name: 智能同步至GitHub
+Name: DMS-Push至GitHub
 Description: 智能同步至GitHub
 Binding: pkg_push2Github_auto
 Interactive: true
 
-Name: Fork至ReshapeData
+Name: DMS-Fork至ReshapeData
 Description: Fork至ReshapeData
 Binding: pkg_fork2Github
 Interactive: true
 
-Name: Fork版本发布
+Name: DMS-Fork版本发布
 Description: Fork版本发布
 Binding: pkg_forkRelease
 Interactive: true
 
-Name: R包结构优化
+Name: DMS-USPR结构优化
 Description: R包结构优化
 Binding: pkg_optimum
 Interactive: true
 
-Name: DMS模块结构优化
+Name: DMS-Com结构优化
 Description: DMS模块结构优化
 Binding: dms_optimum
+Interactive: true
+
+Name: DMS框架创建UI
+Description: DMS模块框架创建
+Binding: mdlCreateUI
 Interactive: true
