@@ -1,9 +1,9 @@
-Name: DMS更新文档
+Name: DMS-USPR更新
 Description: 当function改变时,需要同时更新相应的文档
 Binding: updateScriptFiles
 Interactive: true
 
-Name: DMS更新&安装
+Name: DMS-USPR更新&安装
 Description: 当function改变时,需要同时更新相应的文档
 Binding: updateAndInstall
 Interactive: true
