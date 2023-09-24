@@ -24,7 +24,18 @@ mdlCom_tidy <- function(mdl_dir='/home/hulilei/mdls/',mdl_name = 'mdlStarNight')
     #如果文件存在的话，就进行修改
     file.rename(from,to)
   }
-  
+  #修改DESCRIPTION文件
+  desc_filePath = paste0(full_path,'/','DESCRIPTION')
+  if(file.exists(desc_filePath)){
+    #修改文件
+    data_desc = readLines(desc_filePath)
+    data_desc[1] = paste0("Package: ",mdl_name,type,"")
+    data_desc[2] = paste0("Type: DMS")
+    data_desc[3] = paste0("Title: ",mdl_name,type," mudule for reshape data solutions.")
+    data_desc[4] = paste0("Version: 1.0.0")
+    writeLines(data_desc,desc_filePath)
+    
+  }
   #修改global.R
   global_filePath = paste0(full_path,'/','global.R')
   data_global = readLines(global_filePath)
