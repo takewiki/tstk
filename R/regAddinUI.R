@@ -48,6 +48,7 @@ regAddinUI <-  function() {
 #' @include regAddin.R
 #' @import shiny
 #' @import miniUI
+#' @include mdlDms.R
 #' @export
 #'
 #' @examples
@@ -67,7 +68,7 @@ mdlCreateUI <-  function() {
     
     
     observeEvent(input$done, {
-      dml_create(input$moduleName);
+      tstk::dml_create(input$moduleName);
       stopApp()
     })
     
