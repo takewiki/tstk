@@ -68,7 +68,7 @@ mdlCreateUI <-  function() {
     
     
     observeEvent(input$done, {
-      tstk::dml_create(input$moduleName);
+      tstk::mdl_create(input$moduleName);
       stopApp()
     })
     
