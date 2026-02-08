@@ -13,5 +13,5 @@ mdlCreateUI()
 创建数据中台模块
 }
 \examples{
-mdlCreateUI()
+#
 }

@@ -52,7 +52,7 @@ regAddinUI <-  function() {
 #' @export
 #'
 #' @examples
-#' mdlCreateUI()
+#' #
 mdlCreateUI <-  function() {
   
   # Our ui will be a simple gadget page, which
