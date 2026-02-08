@@ -16,5 +16,5 @@ install_bioconductor(pkgName)
 构建相应的安装生成器,bioconductor
 }
 \examples{
-install_bioconductor();
+#
 }

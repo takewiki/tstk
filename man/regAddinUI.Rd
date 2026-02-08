@@ -13,5 +13,5 @@ regAddinUI()
 注册Rstudio Addin插件UI功能
 }
 \examples{
-regAddinUI();
+
 }

@@ -1,0 +1,15 @@
+Package: test
+Type: Package
+Title: demo mudules for reshape data solutions.
+Version: 1.0.0
+Author: hulilei
+Maintainer: hulilei <hulilei@takewiki.com.cn>
+Description: user interface element for ui elements,latout and actions,
+    mainly from shiny then from html5,css and js,also we want ui can produce
+    result in PDF,PPT,on-line system we can get both icon and templates.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    testthat
+RoxygenNote: 7.1.1

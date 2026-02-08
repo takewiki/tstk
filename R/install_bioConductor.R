@@ -5,7 +5,8 @@
 #' @return 返回值
 #' @export
 #'
-#' @examples install_bioconductor();
+#' @examples 
+#' #
 install_bioconductor <- function(pkgName){
   ## Mirrors: uncomment the following and change to your favorite CRAN mirror
   ## if you don't want to use the default (cran.rstudio.com).

@@ -6,7 +6,8 @@
 #' @import miniUI
 #' @export
 #'
-#' @examples regAddinUI();
+#' @examples 
+#' 
 regAddinUI <-  function() {
 
   # Our ui will be a simple gadget page, which
